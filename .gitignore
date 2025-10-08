@@ -4,3 +4,4 @@ __pycache__/*
 *.json
 **/*.json
 *_dump
+*.feather
