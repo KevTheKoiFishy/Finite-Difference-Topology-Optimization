@@ -6,13 +6,14 @@ from   matplotlib.animation import FuncAnimation
 
 # Create initial data
 data = pd.read_feather("sim_results.feather").values
+data = np.log10(data)
+
 with open("sim_settings.json", "r") as set_json:
     settings = json.loads(set_json.read())
 sim_dims = settings["dim"]
 
-lower = np.min(data)
+lower = np.max(np.min(data), 0)
 upper = np.max(data)
-print(upper)
 
 print(f"Data Bounds: [{lower}, {upper}]")
 
