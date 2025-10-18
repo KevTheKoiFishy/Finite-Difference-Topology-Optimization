@@ -5,3 +5,6 @@ __pycache__/*
 **/*.json
 *_dump
 *.feather
+*.svg
+
+Figures_Archive

@@ -1,12 +1,17 @@
 import numpy as np
+from   typing import Union
 
 class bitmap:
     def __init__(self, dims):
         self.canvas_dim = dims
         self.map = np.zeros(dims, dtype=np.float32)
 
-    def rect(self, pos: tuple, dim: tuple, center: bool=True, value: float = 1.0, operation = "set"):
+    def rect(self, pos: tuple, dim: tuple, center: bool=True, value: float = 1.0, operation = "set", proportion:bool = False):
         
+        if proportion:
+            pos = tuple([int(p * d) for p, d in zip(pos, self.canvas_dim)])
+            dim = tuple([int(s * d) for s, d in zip(dim, self.canvas_dim)])
+
         X0 = [np.clip(p - (d >> 1), 0, w) for p, d, w in zip(pos, dim, self.canvas_dim)] if center else [np.clip(p    , 0, w) for p, d, w in zip(pos, dim, self.canvas_dim)]
         XF = [np.clip(p + (d >> 1), 0, w) for p, d, w in zip(pos, dim, self.canvas_dim)] if center else [np.clip(p + d, 0, w) for p, d, w in zip(pos, dim, self.canvas_dim)]
         

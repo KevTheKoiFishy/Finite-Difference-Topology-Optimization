@@ -5,7 +5,7 @@ import pandas as pd
 from   matplotlib.animation import FuncAnimation
 
 # Create initial data
-data = pd.read_feather("Figures/RUN_001_Result.feather").values
+data = pd.read_feather("Figures/RUN_5551_Result.feather").values
 data = np.log10(data)
 
 with open("sim_settings.json", "r") as set_json:
